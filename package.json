@@ -191,8 +191,8 @@
     "webpack-merge": "^5.8.0"
   },
   "build": {
-    "productName": "ElectronReact",
-    "appId": "org.erb.ElectronReact",
+    "productName": "dupstecoSYS",
+    "appId": "com.ronnaf.dupstecoSYS",
     "asar": true,
     "asarUnpack": "**\\*.{node,dll}",
     "files": [
@@ -250,8 +250,8 @@
     ],
     "publish": {
       "provider": "github",
-      "owner": "electron-react-boilerplate",
-      "repo": "electron-react-boilerplate"
+      "owner": "Ronna Firmo",
+      "repo": "dupsteco-desktop"
     }
   },
   "collective": {
