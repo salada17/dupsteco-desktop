@@ -1,8 +1,5 @@
-import { DupsButton } from '../core/dups-button';
-
 export interface DashboardScreenProps {
   text: string;
-  onLogout: () => void;
 }
 
 export const DashboardScreen = (props: DashboardScreenProps) => {
@@ -12,7 +9,6 @@ export const DashboardScreen = (props: DashboardScreenProps) => {
         <h1>Welcome to Duspteco!</h1>
         <p>{props.text}</p>
       </div>
-      <DupsButton onClick={props.onLogout}>Log out</DupsButton>
     </div>
   );
 };

@@ -11,12 +11,14 @@ import '@fontsource/inter/800.css';
 import '@fontsource/inter/900.css';
 import './App.css';
 
+import { RequireAuth } from './modules/core/require-auth';
+import { AuthProvider } from './modules/core/contexts/auth-context';
+import { LayoutWihOutlet } from './modules/core/layout-with-outlet';
+
 import { LoginScreen } from './modules/auth/login-screen';
 import { LoginScreenContainer } from './modules/auth/login-screen.container';
 import { DashboardScreenContainer } from './modules/dashboard/dashboard-screen.container';
 import { DashboardScreen } from './modules/dashboard/dashboard-screen';
-import { RequireAuth } from './modules/core/require-auth';
-import { AuthProvider } from './modules/core/contexts/auth-context';
 
 const Login = LoginScreenContainer(LoginScreen);
 const Dashboard = DashboardScreenContainer(DashboardScreen);
@@ -26,8 +28,10 @@ export default function App() {
     <AuthProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<RequireAuth element={<Dashboard />} />} />
           <Route path="/login" element={<Login />} />
+          <Route element={<LayoutWihOutlet />}>
+            <Route path="/" element={<RequireAuth element={<Dashboard />} />} />
+          </Route>
         </Routes>
       </Router>
     </AuthProvider>
