@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../core/hooks/use-auth';
 import { LoginScreenProps } from './login-screen';
 
+type LocationState = { from?: { pathname?: string } };
+
 export const LoginScreenContainer = (Screen: React.FC<LoginScreenProps>) =>
   function _() {
     const auth = useAuth();
@@ -17,7 +19,8 @@ export const LoginScreenContainer = (Screen: React.FC<LoginScreenProps>) =>
             // Use { replace: true } so we don't create another entry in the history stack for the login page.
             // This means that when they get to the protected page and click the back button, they won't end up
             // back on the login page, which is also really nice for the user experience.
-            const from = location.state?.from?.pathname || '/';
+            const state = location.state as LocationState | null;
+            const from = state?.from?.pathname || '/';
             navigate(from, { replace: true });
           });
         }}
