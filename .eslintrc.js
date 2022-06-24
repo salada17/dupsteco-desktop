@@ -11,6 +11,7 @@ module.exports = {
     'react/destructuring-assignment': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/require-default-props': 'off',
+    '@typescript-eslint/naming-convention': 'off',
   },
   parserOptions: {
     ecmaVersion: 2020,

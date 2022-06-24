@@ -12,16 +12,24 @@ import '@fontsource/inter/900.css';
 import './App.css';
 
 import { LoginScreen } from './modules/auth/login-screen';
-import { LoginScreenContainer } from './modules/auth/login-screen-container';
+import { LoginScreenContainer } from './modules/auth/login-screen.container';
+import { DashboardScreenContainer } from './modules/dashboard/dashboard-screen.container';
+import { DashboardScreen } from './modules/dashboard/dashboard-screen';
+import { RequireAuth } from './modules/core/require-auth';
+import { AuthProvider } from './modules/core/contexts/auth-context';
 
 const Login = LoginScreenContainer(LoginScreen);
+const Dashboard = DashboardScreenContainer(DashboardScreen);
 
 export default function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Login />} />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<RequireAuth element={<Dashboard />} />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
