@@ -1,8 +1,6 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-CURRENT_VERSION=$(cd release/app && npm pkg get version | sed 's/"//g')
+exec < /dev/tty
 
-git tag v$CURRENT_VERSION
-
-echo "Bumped tag version to v$CURRENT_VERSION"
+node "$(dirname -- "$0")"/bump-version.js

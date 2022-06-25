@@ -2,7 +2,3 @@
 . "$(dirname "$0")/_/husky.sh"
 
 npx lint-staged
-
-exec < /dev/tty
-
-node "$(dirname -- "$0")"/bump-version.js

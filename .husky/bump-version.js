@@ -11,9 +11,9 @@ console.log('Running post-commit...');
 const types = ['major', 'minor', 'patch'];
 const typeStr = types.join('/');
 
-rl.question('Bump package version? Y/n: ', function (shouldBump) {
+rl.question('\nBump package version? Y/n: ', function (shouldBump) {
   if (shouldBump.toLowerCase() === 'y' || shouldBump === '') {
-    rl.question(`Is it ${typeStr}: `, function (type) {
+    rl.question(`\nIs it ${typeStr}: `, function (type) {
       const isValidType = types.includes(type);
 
       if (!isValidType) {
@@ -23,7 +23,7 @@ rl.question('Bump package version? Y/n: ', function (shouldBump) {
       }
 
       // For some reason, `npm version` does not commit and tag so git-add was added.
-      let command = `cd release/app && npm version ${type} && git add .`;
+      let command = `cd release/app && npm version ${type} && git add ."`;
       exec(command, (error, stdout, stderr) => {
         if (error) {
           console.log(`[ERROR] Failed "${command}": ${error.message}`);
@@ -33,8 +33,21 @@ rl.question('Bump package version? Y/n: ', function (shouldBump) {
           console.log(`[STDERR] Failed "${command}": ${stderr}`);
           return;
         }
-        console.log(`Bumped package.json version to ${stdout}`);
-        rl.close();
+
+        console.log(`\nBumped package.json version to ${stdout}`);
+
+        const command1 = `git commit -m "chore: bump package version to ${stdout}" && git tag ${stdout}`;
+        exec(command1, (commitError, commitStdout, commitStderr) => {
+          if (error) {
+            console.log(`[ERROR] Failed "${command1}": ${error.message}`);
+            return;
+          }
+          if (stderr) {
+            console.log(`[STDERR] Failed "${command1}": ${stderr}`);
+            return;
+          }
+          rl.close();
+        });
       });
     });
   } else {
