@@ -1,6 +1,21 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+PREV_V=$(cd release/app && npm pkg get version | sed 's/"//g')
+
+cd ../../
+
 exec < /dev/tty
 
 node "$(dirname -- "$0")"/bump-version.js
+
+NEW_V=$(cd release/app && npm pkg get version | sed 's/"//g')
+
+if [ $PREV_V == $NEW_V ]
+then
+  echo "Nothing was bumped!"
+else
+  git commit -m "chore: bump package version to $NEW_V"
+  git tag v$NEW_V
+  git push && git push --tags
+fi

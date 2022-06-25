@@ -24,6 +24,8 @@ rl.question('\nBump package version? Y/n: ', function (shouldBump) {
 
       // For some reason, `npm version` does not commit and tag so git-add was added.
       let command = `cd release/app && npm version ${type} && git add .`;
+      console.log(`\t[EXECUTE] ${command}`);
+
       exec(command, (error, stdout, stderr) => {
         if (error) {
           console.log(`[ERROR] Failed "${command}": ${error.message}`);
@@ -34,20 +36,9 @@ rl.question('\nBump package version? Y/n: ', function (shouldBump) {
           return;
         }
 
-        console.log(`\nBumped package.json version to ${stdout}`);
-
-        const command1 = `git commit -m "chore: bump package version to ${stdout}" && git tag ${stdout}`;
-        exec(command1, (commitError, commitStdout, commitStderr) => {
-          if (error) {
-            console.log(`[ERROR] Failed "${command1}": ${error.message}`);
-            return;
-          }
-          if (stderr) {
-            console.log(`[STDERR] Failed "${command1}": ${stderr}`);
-            return;
-          }
-          rl.close();
-        });
+        const version = stdout.trim();
+        console.log(`\nBumped package.json version to ${version}`);
+        rl.close();
       });
     });
   } else {
