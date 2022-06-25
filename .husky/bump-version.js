@@ -23,7 +23,7 @@ rl.question('\nBump package version? Y/n: ', function (shouldBump) {
       }
 
       // For some reason, `npm version` does not commit and tag so git-add was added.
-      let command = `cd release/app && npm version ${type} && git add ."`;
+      let command = `cd release/app && npm version ${type} && git add .`;
       exec(command, (error, stdout, stderr) => {
         if (error) {
           console.log(`[ERROR] Failed "${command}": ${error.message}`);
