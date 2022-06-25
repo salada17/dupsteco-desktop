@@ -61,3 +61,6 @@ See Electron's [docs and guides here](https://electron-react-boilerplate.js.org/
 
 Ronna Firmo // [@ronnaf](https://github.com/ronnaf), [ronna.firmo1@gmail.com](ronna.firmo1@gmail.com)
 
+## Trigger builds
+
+Builds triggered: 1
