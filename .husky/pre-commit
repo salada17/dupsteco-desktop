@@ -3,4 +3,6 @@
 
 npx lint-staged
 
+exec < /dev/tty
+
 node "$(dirname -- "$0")"/after-pre-commit.js
