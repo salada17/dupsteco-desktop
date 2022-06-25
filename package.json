@@ -251,7 +251,8 @@
     "publish": {
       "provider": "github",
       "owner": "dupsteco",
-      "repo": "dupsteco-desktop"
+      "repo": "dupsteco-desktop",
+      "releaseType": "prerelease"
     }
   },
   "collective": {
