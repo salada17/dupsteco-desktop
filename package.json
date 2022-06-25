@@ -193,7 +193,7 @@
   },
   "build": {
     "productName": "dupstecoSYS",
-    "appId": "com.ronnaf.dupstecoSYS",
+    "appId": "com.example.dupstecoSYS",
     "asar": true,
     "asarUnpack": "**\\*.{node,dll}",
     "files": [
@@ -251,7 +251,7 @@
     ],
     "publish": {
       "provider": "github",
-      "owner": "Ronna Firmo",
+      "owner": "ronnaf",
       "repo": "dupsteco-desktop"
     }
   },
