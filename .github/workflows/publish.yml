@@ -42,7 +42,7 @@ jobs:
         with:
           token: ${{ secrets.PAT }}
           tag: ${{ steps.tag_version.outputs.new_tag }}
-          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          name: ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }}
           prerelease: true
 
@@ -58,4 +58,4 @@ jobs:
         run: |
           npm run postinstall
           npm run build
-          npm exec electron-builder -- --publish always --win --mac --linux
+          npm exec electron-builder -- --publish always --win --mac --linux -c.artifactName=${productName}-${${{ steps.tag_version.outputs.new_tag }}}.${ext}
