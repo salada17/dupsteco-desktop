@@ -3,8 +3,6 @@
 
 PREV_V=$(cd release/app && npm pkg get version | sed 's/"//g')
 
-cd ../
-
 exec < /dev/tty
 
 node "$(dirname -- "$0")"/bump-version.js
