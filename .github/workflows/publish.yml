@@ -37,6 +37,13 @@ jobs:
         with:
           github_token: ${{ secrets.PAT }}
 
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
+
       - name: Publish releases
         env:
           # These values are used for auto updates signing
