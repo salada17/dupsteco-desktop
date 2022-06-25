@@ -3,7 +3,7 @@
 
 PREV_V=$(cd release/app && npm pkg get version | sed 's/"//g')
 
-cd ../../
+cd ../
 
 exec < /dev/tty
 
