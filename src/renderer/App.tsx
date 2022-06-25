@@ -13,7 +13,7 @@ import './App.css';
 
 import { RequireAuth } from './modules/core/require-auth';
 import { AuthProvider } from './modules/core/contexts/auth-context';
-import { LayoutWihOutlet } from './modules/core/layout-with-outlet';
+import { LayoutWithOutlet } from './modules/core/layout-with-outlet';
 
 import { LoginScreen } from './modules/auth/login-screen';
 import { LoginScreenContainer } from './modules/auth/login-screen.container';
@@ -29,7 +29,7 @@ export default function App() {
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route element={<LayoutWihOutlet />}>
+          <Route element={<LayoutWithOutlet />}>
             <Route path="/" element={<RequireAuth element={<Dashboard />} />} />
           </Route>
         </Routes>
