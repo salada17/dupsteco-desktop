@@ -21,7 +21,7 @@ rl.question('Bump package version? Y/n: ', function (shouldBump) {
         type = 'patch';
       }
 
-      let command = `cd release/app && npm version ${type}`;
+      let command = `cd release/app && npm version ${type} && git add .`;
       exec(command, (error, stdout, stderr) => {
         if (error) {
           console.log(`error: ${error.message}`);
