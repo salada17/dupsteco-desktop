@@ -6,7 +6,7 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-console.log('Running after-pre-commit...');
+console.log('Running post-commit...');
 
 const types = ['major', 'minor', 'patch'];
 const typeStr = types.join('/');
@@ -21,7 +21,7 @@ rl.question('Bump package version? Y/n: ', function (shouldBump) {
         type = 'patch';
       }
 
-      let command = `cd release/app && npm version ${type} && git add .`;
+      let command = `cd release/app && npm version ${type}`;
       exec(command, (error, stdout, stderr) => {
         if (error) {
           console.log(`error: ${error.message}`);
@@ -31,7 +31,7 @@ rl.question('Bump package version? Y/n: ', function (shouldBump) {
           console.log(`stderr: ${stderr}`);
           return;
         }
-        console.log(`Bumping to version ${stdout}`);
+        console.log(`Bumped to version ${stdout}`);
         rl.close();
       });
     });
