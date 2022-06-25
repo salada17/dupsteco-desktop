@@ -3,4 +3,4 @@
 
 exec < /dev/tty
 
-node "$(dirname -- "$0")"/post-commit.js
+node "$(dirname -- "$0")"/bump-version.js
