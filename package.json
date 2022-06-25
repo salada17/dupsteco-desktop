@@ -250,7 +250,7 @@
     ],
     "publish": {
       "provider": "github",
-      "owner": "ronnaf",
+      "owner": "dupsteco",
       "repo": "dupsteco-desktop"
     }
   },
