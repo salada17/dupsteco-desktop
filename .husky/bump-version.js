@@ -15,23 +15,25 @@ rl.question('Bump package version? Y/n: ', function (shouldBump) {
   if (shouldBump.toLowerCase() === 'y' || shouldBump === '') {
     rl.question(`Is it ${typeStr}: `, function (type) {
       const isValidType = types.includes(type);
+
       if (!isValidType) {
         const message = `Invalid type! Should be one of ${typeStr}. Falling back to patch...`;
         console.log(message);
         type = 'patch';
       }
 
-      let command = `cd release/app && npm version ${type}`;
+      // For some reason, `npm version` does not commit and tag so git-add was added.
+      let command = `cd release/app && npm version ${type} && git add .`;
       exec(command, (error, stdout, stderr) => {
         if (error) {
-          console.log(`error: ${error.message}`);
+          console.log(`[ERROR] Failed "${command}": ${error.message}`);
           return;
         }
         if (stderr) {
-          console.log(`stderr: ${stderr}`);
+          console.log(`[STDERR] Failed "${command}": ${stderr}`);
           return;
         }
-        console.log(`Bumped to version ${stdout}`);
+        console.log(`Bumped package.json version to ${stdout}`);
         rl.close();
       });
     });
