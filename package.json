@@ -268,5 +268,6 @@
       "src/main/*"
     ],
     "logLevel": "quiet"
-  }
+  },
+  "version": "0.1.0"
 }
