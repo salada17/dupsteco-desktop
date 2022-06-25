@@ -58,4 +58,4 @@ jobs:
         run: |
           npm run postinstall
           npm run build
-          npm exec electron-builder -- --publish always --win --mac --linux -c.artifactName=${productName}-${{ steps.tag_version.outputs.new_tag }}.${ext}
+          npm exec electron-builder -- --publish always --win --mac --linux -c.artifactName=${productName}-${steps.tag_version.outputs.new_tag}.${ext}
