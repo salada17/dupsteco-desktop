@@ -11,10 +11,10 @@ console.log('Running post-commit...');
 const types = ['major', 'minor', 'patch'];
 const typeStr = types.join('/');
 
-rl.question('\nBump package version? Y/n: ', function (shouldBump) {
-  if (shouldBump.toLowerCase() === 'y' || shouldBump === '') {
-    rl.question(`\nIs it ${typeStr}: `, function (type) {
-      const isValidType = types.includes(type);
+rl.question('\nBump package version? y/N: ', function (shouldBump) {
+  if (shouldBump.toLowerCase() === 'y') {
+    rl.question(`\nIs it ${typeStr}? (patch): `, function (type) {
+      const isValidType = types.includes(type.toLowerCase());
 
       if (!isValidType) {
         const message = `Invalid type! Should be one of ${typeStr}. Falling back to patch...`;
