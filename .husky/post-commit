@@ -11,7 +11,7 @@ NEW_V=$(cd release/app && npm pkg get version | sed 's/"//g')
 
 if [ $PREV_V == $NEW_V ]
 then
-  printf "\nNothing was bumped!"
+  printf "\nNothing was bumped!\n"
 else
   printf "\nDisabling post-commit before commiting..\n"
   chmod -x .husky/post-commit
