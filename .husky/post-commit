@@ -13,9 +13,15 @@ if [ $PREV_V == $NEW_V ]
 then
   printf "\nNothing was bumped!"
 else
+  printf "\nDisabling post-commit before commiting..\n"
+  chmod -x .husky/post-commit
+  printf "\nCommiting..\n"
+  git commit -m "chore: bump package version to $NEW_V"
+  printf "\nEnabling post-commit..\n"
+  chmod +x .husky/post-commit
   printf "\nBumping tag...\n"
-  git tag -a v$NEW_V -m "chore: bump package version to $NEW_V"
+  git tag -a v$NEW_V -m "v$NEW_V"
   printf "\nPushing...\n"
   git push --atomic origin main v$NEW_V
-  printf "\nDone!"
+  printf "\nDone!\n"
 fi
